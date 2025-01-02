@@ -8,14 +8,14 @@ import type { ChannelType } from "@/lib/types";
 export default function HomeScreen() {
   const {
     data: channels,
-    isLoading,
+    isPending,
     error,
   } = useQuery<ChannelType[]>({
     queryKey: ["channels"],
     queryFn: fetchChannels,
   });
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <View className="flex-1 justify-center items-center">
         <Text>Loading...</Text>
