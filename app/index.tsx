@@ -34,8 +34,7 @@ export default function HomeScreen() {
 
   return (
     <ScrollView>
-      <View className="flex-1 items-center">
-        <Text className="text-red-700">Home3333</Text>
+      <View className="flex-1 ml-4">
         <Link href="/settings">
           <Text className="text-blue-800">Settings</Text>
         </Link>
