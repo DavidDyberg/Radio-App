@@ -1,5 +1,5 @@
 import type { ChannelType } from "@/lib/types";
-import { View, Text, Image, Button } from "react-native";
+import { View, Text, Image, Button, Pressable } from "react-native";
 import { Audio } from "expo-av";
 import { useState } from "react";
 
@@ -47,12 +47,21 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             <Text className="text-black">{channel.name}</Text>
           </View>
           {playingChannelId === channel.id ? (
-            <Button title="Stop" onPress={stopAudio} />
+            <Pressable onPress={stopAudio}>
+              <Image
+                className="mr-1"
+                source={require("../assets/images/stop-button.png")}
+              />
+            </Pressable>
           ) : (
-            <Button
-              title="Play"
+            <Pressable
               onPress={() => playAudio(channel.liveaudio.url, channel.id)}
-            />
+            >
+              <Image
+                className="mr-1"
+                source={require("../assets/images/play-button.png")}
+              />
+            </Pressable>
           )}
         </View>
       ))}
