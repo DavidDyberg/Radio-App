@@ -39,7 +39,7 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
           className="flex flex-row justify-between gap-2 border-b border-gray-400"
           key={channel.id}
         >
-          <View className="flex flex-row">
+          <View className="flex flex-row gap-1 mb-1">
             <Image
               source={{ uri: channel.image }}
               style={{ width: 50, height: 50, borderRadius: 10 }}
