@@ -16,3 +16,16 @@ export type ChannelType = {
     statkey: string;
   };
 };
+
+export type PaginationType = {
+  page: number;
+  size: number;
+  totalhits: number;
+  totalpages: number;
+  nextpage: string | null;
+};
+
+export type ChannelsResponseType = {
+  channels: ChannelType[];
+  pagination: PaginationType;
+};
