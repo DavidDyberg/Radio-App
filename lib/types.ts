@@ -23,6 +23,7 @@ export type PaginationType = {
   totalhits: number;
   totalpages: number;
   nextpage: string | null;
+  previouspage: string | null;
 };
 
 export type ChannelsResponseType = {

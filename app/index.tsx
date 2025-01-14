@@ -16,6 +16,13 @@ export default function HomeScreen() {
     queryFn: fetchChannels,
   });
 
+  const filteredChannels =
+    channels?.filter(
+      (channel) =>
+        !(channel.name.startsWith("P4") && channel.name !== "P4 Plus") &&
+        !channel.name.startsWith("SR")
+    ) || [];
+
   if (isPending) {
     return (
       <View className="flex-1 justify-center items-center">
@@ -38,7 +45,7 @@ export default function HomeScreen() {
         <Link href="/settings">
           <Text className="text-blue-800">Settings</Text>
         </Link>
-        {channels && <ChannelList channels={channels} />}
+        {channels && <ChannelList channels={filteredChannels} />}
       </View>
     </ScrollView>
   );
