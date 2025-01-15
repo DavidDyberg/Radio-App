@@ -11,23 +11,21 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [playingChannelId, setPlayingChannelId] = useState<number | null>(null);
 
-  const playAudio = async (url: string, channelId: number) => {
+  const playSound = async (uri: string, channelId: number) => {
     if (sound) {
-      await sound.stopAsync();
       await sound.unloadAsync();
     }
-
-    const { sound: newSound } = await Audio.Sound.createAsync({ uri: url });
+    const { sound: newSound } = await Audio.Sound.createAsync(
+      { uri },
+      { shouldPlay: true }
+    );
     setSound(newSound);
     setPlayingChannelId(channelId);
-    await newSound.playAsync();
   };
 
-  const stopAudio = async () => {
+  const stopSound = async () => {
     if (sound) {
-      await sound.stopAsync();
-      await sound.unloadAsync();
-      setSound(null);
+      await sound.setStatusAsync({ shouldPlay: false });
       setPlayingChannelId(null);
     }
   };
@@ -46,8 +44,9 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             />
             <Text className="text-black">{channel.name}</Text>
           </View>
+
           {playingChannelId === channel.id ? (
-            <Pressable onPress={stopAudio}>
+            <Pressable onPress={stopSound}>
               <Image
                 className="mr-1"
                 source={require("../assets/images/stop-button.png")}
@@ -55,7 +54,7 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             </Pressable>
           ) : (
             <Pressable
-              onPress={() => playAudio(channel.liveaudio.url, channel.id)}
+              onPress={() => playSound(channel.liveaudio.url, channel.id)}
             >
               <Image
                 className="mr-1"
