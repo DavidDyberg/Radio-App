@@ -2,6 +2,7 @@ import type { ChannelType } from "@/lib/types";
 import { View, Text, Image, Button, Pressable } from "react-native";
 import { Audio } from "expo-av";
 import { useState } from "react";
+import { PlayButton } from "@/components/button";
 
 type ChannelListProps = {
   channels: ChannelType[];
@@ -45,23 +46,16 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             <Text className="text-black">{channel.name}</Text>
           </View>
 
-          {playingChannelId === channel.id ? (
-            <Pressable onPress={stopSound}>
-              <Image
-                className="mr-1"
-                source={require("../assets/images/stop-button.png")}
-              />
-            </Pressable>
-          ) : (
-            <Pressable
-              onPress={() => playSound(channel.liveaudio.url, channel.id)}
-            >
-              <Image
-                className="mr-1"
-                source={require("../assets/images/play-button.png")}
-              />
-            </Pressable>
-          )}
+          <PlayButton
+            className="mr-2"
+            size="lg"
+            isPlaying={playingChannelId === channel.id}
+            onPress={() =>
+              playingChannelId === channel.id
+                ? stopSound()
+                : playSound(channel.liveaudio.url, channel.id)
+            }
+          />
         </View>
       ))}
     </View>
