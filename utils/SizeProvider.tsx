@@ -8,20 +8,20 @@ enum SizeOption {
 }
 
 type SizeContextType = {
-  size: SizeOption;
+  appSize: SizeOption;
   selectSize: (newSize: SizeOption) => void;
 };
 
 const SizeContext = createContext<SizeContextType | undefined>(undefined);
 
 export const SizeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [size, setSize] = useState<SizeOption>(SizeOption.Default);
+  const [appSize, setAppSize] = useState<SizeOption>(SizeOption.Default);
 
   useEffect(() => {
     const loadSize = async () => {
       const storedSize = await AsyncStorage.getItem("appSize");
       if (storedSize) {
-        setSize(storedSize as SizeOption);
+        setAppSize(storedSize as SizeOption);
       }
     };
     loadSize();
@@ -29,11 +29,11 @@ export const SizeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const selectSize = async (newSize: SizeOption) => {
     await AsyncStorage.setItem("appSize", newSize);
-    setSize(newSize);
+    setAppSize(newSize);
   };
 
   return (
-    <SizeContext.Provider value={{ size, selectSize }}>
+    <SizeContext.Provider value={{ appSize, selectSize }}>
       {children}
     </SizeContext.Provider>
   );
