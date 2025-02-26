@@ -1,32 +1,33 @@
-import { Pressable, Text } from "react-native";
-import { Image } from "react-native";
+import { Pressable, Text, Image } from "react-native";
 import { cn } from "@/utils/classnames";
 import { SizeOption, useSize } from "@/utils/SizeProvider";
 import * as Haptics from "expo-haptics";
 
 type ButtonProps = {
-  isPlaying?: boolean;
   onPress: () => void;
-  className?: string;
   variant: "primary" | "playButton";
-  label?: string;
+  isPlaying?: boolean;
   isActive?: boolean;
+  label?: string;
+  className?: string;
 };
 
 export const CustomButton: React.FC<ButtonProps> = ({
-  isPlaying,
   onPress,
+  isPlaying,
+  isActive,
   className,
   variant,
   label,
-  isActive,
 }) => {
   if (variant === "playButton" && label) {
     throw new Error("PlayButton can't have a label");
   } else if (variant === "primary" && !label) {
     throw new Error("Primary button must have a label");
   } else if (variant === "playButton" && isActive) {
-    throw new Error("PlayButton can't have an isActive state");
+    throw new Error("PlayButton can't have an isActive prop");
+  } else if (variant === "primary" && isPlaying) {
+    throw new Error("Primary button can't have an isPlaying prop");
   }
 
   const { appSize } = useSize();
