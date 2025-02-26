@@ -1,8 +1,8 @@
 import type { ChannelType } from "@/lib/types";
-import { View, Text, Image, Button, Pressable } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Audio } from "expo-av";
 import { useState } from "react";
-import { PlayButton } from "@/components/button";
+import { CustomButton } from "@/components/button";
 
 type ChannelListProps = {
   channels: ChannelType[];
@@ -46,9 +46,9 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             <Text className="text-black">{channel.name}</Text>
           </View>
 
-          <PlayButton
+          <CustomButton
+            variant="playButton"
             className="mr-2"
-            size="lg"
             isPlaying={playingChannelId === channel.id}
             onPress={() =>
               playingChannelId === channel.id

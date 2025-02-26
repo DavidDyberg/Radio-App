@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-enum SizeOption {
+export enum SizeOption {
   Default = "default",
   Large = "large",
   ExtraLarge = "extraLarge",
@@ -39,10 +39,11 @@ export const SizeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useSize = () => {
+export const useSize = (): SizeContextType => {
   const context = useContext(SizeContext);
 
   if (!context) {
     throw new Error("useSize must be used within a SizeProvider");
   }
+  return context;
 };
