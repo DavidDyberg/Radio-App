@@ -2,6 +2,7 @@ import { Pressable, Text } from "react-native";
 import { Image } from "react-native";
 import { cn } from "@/utils/classnames";
 import { SizeOption, useSize } from "@/utils/SizeProvider";
+import * as Haptics from "expo-haptics";
 
 type ButtonProps = {
   isPlaying?: boolean;
@@ -47,7 +48,12 @@ export const CustomButton: React.FC<ButtonProps> = ({
   return (
     <>
       {variant === "playButton" ? (
-        <Pressable onPress={onPress}>
+        <Pressable
+          onPress={() => {
+            onPress();
+            Haptics.selectionAsync();
+          }}
+        >
           <Image
             className={cn(playButtonSize, className)}
             source={
