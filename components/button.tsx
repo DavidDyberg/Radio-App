@@ -2,6 +2,8 @@ import { Pressable, Text, Image } from "react-native";
 import { cn } from "@/utils/classnames";
 import { SizeOption, useSize } from "@/utils/SizeProvider";
 import * as Haptics from "expo-haptics";
+import PlayIcon from "@/assets/images/play-icon.svg";
+import PauseIcon from "@/assets/images/pause-icon.svg";
 
 type ButtonProps = {
   onPress: () => void;
@@ -34,10 +36,10 @@ export const CustomButton: React.FC<ButtonProps> = ({
 
   const playButtonSize =
     appSize === SizeOption.Large
-      ? "w-14 h-14"
+      ? 56
       : appSize === SizeOption.ExtraLarge
-      ? "w-16 h-16"
-      : "w-12 h-12";
+      ? 64
+      : 48;
 
   const primaryButtonSize =
     appSize === SizeOption.Large
@@ -54,15 +56,13 @@ export const CustomButton: React.FC<ButtonProps> = ({
             onPress();
             Haptics.selectionAsync();
           }}
+          className={cn(className)}
         >
-          <Image
-            className={cn(playButtonSize, className)}
-            source={
-              isPlaying
-                ? require("../assets/images/stop-button.png")
-                : require("../assets/images/play-button.png")
-            }
-          />
+          {isPlaying ? (
+            <PauseIcon width={playButtonSize} height={playButtonSize} />
+          ) : (
+            <PlayIcon width={playButtonSize} height={playButtonSize} />
+          )}
         </Pressable>
       ) : (
         <Pressable
