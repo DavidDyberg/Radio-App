@@ -59,9 +59,17 @@ export const CustomButton: React.FC<ButtonProps> = ({
           className={cn(className)}
         >
           {isPlaying ? (
-            <PauseIcon width={playButtonSize} height={playButtonSize} />
+            <PauseIcon
+              color="black"
+              width={playButtonSize}
+              height={playButtonSize}
+            />
           ) : (
-            <PlayIcon width={playButtonSize} height={playButtonSize} />
+            <PlayIcon
+              color="black"
+              width={playButtonSize}
+              height={playButtonSize}
+            />
           )}
         </Pressable>
       ) : (
