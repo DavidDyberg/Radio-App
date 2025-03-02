@@ -1,4 +1,4 @@
-import { Pressable, Text, Image } from "react-native";
+import { Pressable, Text } from "react-native";
 import { cn } from "@/utils/classnames";
 import { SizeOption, useSize } from "@/utils/SizeProvider";
 import * as Haptics from "expo-haptics";
@@ -36,9 +36,9 @@ export const CustomButton: React.FC<ButtonProps> = ({
 
   const playButtonSize =
     appSize === SizeOption.Large
-      ? 56
-      : appSize === SizeOption.ExtraLarge
       ? 64
+      : appSize === SizeOption.ExtraLarge
+      ? 80
       : 48;
 
   const primaryButtonSize =

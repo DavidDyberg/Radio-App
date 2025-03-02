@@ -1,13 +1,25 @@
 import { View, Text } from "react-native";
 import { useSize, SizeOption } from "@/utils/SizeProvider";
 import { CustomButton } from "@/components/button";
+import { cn } from "@/utils/classnames";
 
 export default function Settings() {
-  const { appSize, selectSize } = useSize(); // Get current size and function to update it
+  const { appSize, selectSize } = useSize();
 
   return (
     <View className="p-4">
-      <Text className="text-lg font-bold mb-4">Textstorlek</Text>
+      <Text
+        className={cn(
+          appSize === SizeOption.Large
+            ? "text-2xl"
+            : appSize === SizeOption.ExtraLarge
+            ? "text-3xl"
+            : "text-lg",
+          "font-bold mb-4"
+        )}
+      >
+        Appstorlek
+      </Text>
 
       <CustomButton
         variant="primary"

@@ -16,6 +16,8 @@ export default function AppLayout() {
   return (
     <Stack
       screenOptions={{
+        contentStyle: { backgroundColor: "#f8fafc" },
+        headerStyle: { backgroundColor: "#f8fafc" },
         headerRight: () => (
           <Button
             onPress={() => {

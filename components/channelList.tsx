@@ -3,6 +3,8 @@ import { View, Text, Image } from "react-native";
 import { Audio } from "expo-av";
 import { useState } from "react";
 import { CustomButton } from "@/components/button";
+import { SizeOption, useSize } from "@/utils/SizeProvider";
+import { cn } from "@/utils/classnames";
 
 type ChannelListProps = {
   channels: ChannelType[];
@@ -11,6 +13,7 @@ type ChannelListProps = {
 const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [playingChannelId, setPlayingChannelId] = useState<number | null>(null);
+  const { appSize } = useSize();
 
   const playSound = async (uri: string, channelId: number) => {
     if (sound) {
@@ -31,31 +34,52 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
     }
   };
 
+  const channelImageSize =
+    appSize === SizeOption.Large
+      ? 64
+      : appSize === SizeOption.ExtraLarge
+      ? 80
+      : 48;
+
   return (
     <View className="gap-4">
       {channels.map((channel) => (
         <View
-          className="flex flex-row justify-between gap-2 border-b border-gray-400"
+          className="flex flex-col gap-1 border-b border-gray-400"
           key={channel.id}
         >
-          <View className="flex flex-row gap-1 mb-1">
+          <Text
+            className={cn(
+              appSize === SizeOption.Large
+                ? "text-xl"
+                : appSize === SizeOption.ExtraLarge
+                ? "text-2xl"
+                : "text-base"
+            )}
+          >
+            {channel.name.toUpperCase()}
+          </Text>
+          <View className="flex flex-row justify-between items-center pb-1">
             <Image
               source={{ uri: channel.image }}
-              style={{ width: 50, height: 50, borderRadius: 10 }}
+              style={{
+                width: channelImageSize,
+                height: channelImageSize,
+                borderRadius: 10,
+              }}
             />
-            <Text className="text-black">{channel.name}</Text>
-          </View>
 
-          <CustomButton
-            variant="playButton"
-            className="mr-2"
-            isPlaying={playingChannelId === channel.id}
-            onPress={() =>
-              playingChannelId === channel.id
-                ? stopSound()
-                : playSound(channel.liveaudio.url, channel.id)
-            }
-          />
+            <CustomButton
+              variant="playButton"
+              className="mr-2"
+              isPlaying={playingChannelId === channel.id}
+              onPress={() =>
+                playingChannelId === channel.id
+                  ? stopSound()
+                  : playSound(channel.liveaudio.url, channel.id)
+              }
+            />
+          </View>
         </View>
       ))}
     </View>
