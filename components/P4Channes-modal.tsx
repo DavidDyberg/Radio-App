@@ -16,7 +16,7 @@ const P4Modal = ({
   p4Channels,
 }: P4ModalProps) => {
   return (
-    <Modal animationType="slide" visible={visible}>
+    <Modal animationType="slide" visible={visible} onRequestClose={onClose}>
       <View className="flex flex-col justify-center items-center flex-1">
         {p4Channels.map((channel) => (
           <Pressable
