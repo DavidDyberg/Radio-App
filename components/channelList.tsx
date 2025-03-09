@@ -1,5 +1,5 @@
 import type { ChannelType } from "@/lib/types";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { Audio } from "expo-av";
 import { useState } from "react";
 import { CustomButton } from "@/components/button";
@@ -7,6 +7,7 @@ import { SizeOption, useSize } from "@/utils/SizeProvider";
 import { cn } from "@/utils/classnames";
 import P4Logo from "@/assets/images/p4-icon.svg";
 import React from "react";
+import P4Modal from "./P4Channes-modal";
 
 type ChannelListProps = {
   channels: ChannelType[];
@@ -15,6 +16,8 @@ type ChannelListProps = {
 const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [playingChannelId, setPlayingChannelId] = useState<number | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedP4, setSelectedP4] = useState<ChannelType | null>(null);
   const { appSize } = useSize();
 
   const playSound = async (uri: string, channelId: number) => {
@@ -93,22 +96,36 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
               >
                 <P4Logo width={channelImageSize} height={channelImageSize} />
               </View>
-              <Text
-                className={cn(
-                  "mr-2",
-                  appSize === SizeOption.Large
-                    ? "text-xl"
-                    : appSize === SizeOption.ExtraLarge
-                    ? "text-2xl"
-                    : "text-base"
-                )}
-              >
-                Välj P4 kanal
-              </Text>
+              <Pressable onPress={() => setModalVisible(true)}>
+                <Text
+                  className={cn(
+                    "mr-2",
+                    appSize === SizeOption.Large
+                      ? "text-xl"
+                      : appSize === SizeOption.ExtraLarge
+                      ? "text-2xl"
+                      : "text-base"
+                  )}
+                >
+                  Välj P4 kanal
+                </Text>
+              </Pressable>
             </View>
           )}
         </React.Fragment>
       ))}
+      <P4Modal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSelectP4={(channel) => {
+          setSelectedP4(channel);
+          setModalVisible(false);
+        }}
+        p4Channels={channels?.filter(
+          (channel) =>
+            channel.name.startsWith("P4") && channel.name !== "P4 Plus"
+        )}
+      />
     </View>
   );
 };
