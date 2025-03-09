@@ -45,7 +45,7 @@ export default function HomeScreen() {
         <Link href="/settings">
           <Text className="text-blue-800">Settings</Text>
         </Link>
-        {channels && <ChannelList channels={filteredChannels} />}
+        <ChannelList channels={filteredChannels} />
       </View>
     </ScrollView>
   );
