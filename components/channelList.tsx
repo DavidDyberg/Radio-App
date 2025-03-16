@@ -79,7 +79,6 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
                   borderRadius: 10,
                 }}
               />
-
               <CustomButton
                 variant="playButton"
                 className="mr-2"
@@ -92,36 +91,96 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
               />
             </View>
           </View>
+
           {index === 2 && (
-            <View className="flex flex-row items-center justify-between gap-1 border-b border-gray-400 pb-2">
-              <View
-                style={{
-                  width: channelImageSize,
-                  height: channelImageSize,
-                  borderRadius: 10,
-                  overflow: "hidden",
-                }}
-              >
-                <P4Logo width={channelImageSize} height={channelImageSize} />
-              </View>
-              <Pressable onPress={() => setModalVisible(true)}>
-                <Text
-                  className={cn(
-                    "mr-2",
-                    appSize === SizeOption.Large
-                      ? "text-2xl"
-                      : appSize === SizeOption.ExtraLarge
-                      ? "text-3xl"
-                      : "text-base"
-                  )}
-                >
-                  Välj P4 kanal
-                </Text>
-              </Pressable>
+            <View>
+              {selectedP4 ? (
+                <View className="flex flex-col gap-1 border-b border-gray-400">
+                  <View className="flex flex-wrap flex-row justify-between">
+                    <Text
+                      className={cn(
+                        "flex-1",
+                        appSize === SizeOption.Large
+                          ? "text-2xl"
+                          : appSize === SizeOption.ExtraLarge
+                          ? "text-3xl"
+                          : "text-base"
+                      )}
+                    >
+                      {selectedP4.name.toUpperCase()}
+                    </Text>
+                    <Pressable onPress={() => setModalVisible(true)}>
+                      <Text
+                        className={cn(
+                          "mr-2",
+                          appSize === SizeOption.Large
+                            ? "text-2xl"
+                            : appSize === SizeOption.ExtraLarge
+                            ? "text-3xl"
+                            : "text-base"
+                        )}
+                      >
+                        Byt P4-kanal
+                      </Text>
+                    </Pressable>
+                  </View>
+                  <View className="flex flex-row justify-between items-center pb-1">
+                    <Image
+                      source={{ uri: selectedP4.image }}
+                      style={{
+                        width: channelImageSize,
+                        height: channelImageSize,
+                        borderRadius: 10,
+                      }}
+                    />
+                    <CustomButton
+                      variant="playButton"
+                      className="mr-2"
+                      isPlaying={playingChannelId === selectedP4.id}
+                      onPress={() =>
+                        playingChannelId === selectedP4.id
+                          ? stopSound()
+                          : playSound(selectedP4.liveaudio.url, selectedP4.id)
+                      }
+                    />
+                  </View>
+                </View>
+              ) : (
+                <View className="flex flex-row items-center justify-between gap-1 border-b border-gray-400 pb-2">
+                  <View
+                    style={{
+                      width: channelImageSize,
+                      height: channelImageSize,
+                      borderRadius: 10,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <P4Logo
+                      width={channelImageSize}
+                      height={channelImageSize}
+                    />
+                  </View>
+                  <Pressable onPress={() => setModalVisible(true)}>
+                    <Text
+                      className={cn(
+                        "mr-2",
+                        appSize === SizeOption.Large
+                          ? "text-2xl"
+                          : appSize === SizeOption.ExtraLarge
+                          ? "text-3xl"
+                          : "text-base"
+                      )}
+                    >
+                      Välj P4-kanal
+                    </Text>
+                  </Pressable>
+                </View>
+              )}
             </View>
           )}
         </React.Fragment>
       ))}
+
       <P4Modal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
