@@ -62,9 +62,9 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
             <Text
               className={cn(
                 appSize === SizeOption.Large
-                  ? "text-xl"
-                  : appSize === SizeOption.ExtraLarge
                   ? "text-2xl"
+                  : appSize === SizeOption.ExtraLarge
+                  ? "text-3xl"
                   : "text-base"
               )}
             >
@@ -109,9 +109,9 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
                   className={cn(
                     "mr-2",
                     appSize === SizeOption.Large
-                      ? "text-xl"
-                      : appSize === SizeOption.ExtraLarge
                       ? "text-2xl"
+                      : appSize === SizeOption.ExtraLarge
+                      ? "text-3xl"
                       : "text-base"
                   )}
                 >
