@@ -17,11 +17,7 @@ export default function HomeScreen() {
   });
 
   const filteredChannels =
-    channels?.filter(
-      (channel) =>
-        !(channel.name.startsWith("P4") && channel.name !== "P4 Plus") &&
-        !channel.name.startsWith("SR")
-    ) || [];
+    channels?.filter((channel) => !channel.name.startsWith("SR")) || [];
 
   if (isPending) {
     return (

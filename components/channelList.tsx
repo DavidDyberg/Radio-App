@@ -46,9 +46,17 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
       ? 80
       : 48;
 
+  const filteredChannels = channels.filter(
+    (channel) => !channel.name.startsWith("P4") || channel.name === "P4 Plus"
+  );
+
+  const p4Channels = channels.filter(
+    (channel) => channel.name.startsWith("P4") && channel.name !== "P4 Plus"
+  );
+
   return (
     <View className="gap-4">
-      {channels.map((channel, index) => (
+      {filteredChannels.map((channel, index) => (
         <React.Fragment key={channel.id}>
           <View className="flex flex-col gap-1 border-b border-gray-400">
             <Text
@@ -121,10 +129,7 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
           setSelectedP4(channel);
           setModalVisible(false);
         }}
-        p4Channels={channels?.filter(
-          (channel) =>
-            channel.name.startsWith("P4") && channel.name !== "P4 Plus"
-        )}
+        p4Channels={p4Channels}
       />
     </View>
   );
