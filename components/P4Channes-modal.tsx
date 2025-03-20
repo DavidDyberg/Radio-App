@@ -9,6 +9,8 @@ import {
 import { ChannelType } from "@/lib/types";
 import { useSize, SizeOption } from "@/utils/SizeProvider";
 import { cn } from "@/utils/classnames";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type P4ModalProps = ModalProps & {
   visible: boolean;
@@ -24,6 +26,30 @@ const P4Modal = ({
   p4Channels,
 }: P4ModalProps) => {
   const { appSize } = useSize();
+  const [selectedChannelId, setSelectedChannelId] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    const loadActiveP4Channel = async () => {
+      const storedActiveP4Channel = await AsyncStorage.getItem(
+        "activeP4Channel"
+      );
+      if (storedActiveP4Channel) {
+        const channel = JSON.parse(storedActiveP4Channel);
+        setSelectedChannelId(channel.id);
+        onSelectP4(channel);
+      }
+    };
+    loadActiveP4Channel();
+  }, []);
+
+  const handleSelectP4 = async (channel: ChannelType) => {
+    setSelectedChannelId(channel.id);
+    onSelectP4(channel);
+    await AsyncStorage.setItem("activeP4Channel", JSON.stringify(channel));
+  };
+
   return (
     <Modal
       presentationStyle="pageSheet"
@@ -64,7 +90,7 @@ const P4Modal = ({
           {p4Channels.map((channel) => (
             <View key={channel.id} className="ml-4 mr-4 pt-2 pb-2">
               <Pressable
-                onPress={() => onSelectP4(channel)}
+                onPress={() => handleSelectP4(channel)}
                 className="p-2 border-b border-gray-300"
               >
                 <Text
@@ -78,6 +104,9 @@ const P4Modal = ({
                 >
                   {channel.name}
                 </Text>
+                {selectedChannelId === channel.id && (
+                  <Text className="text-green-500">Selected</Text>
+                )}
               </Pressable>
             </View>
           ))}
