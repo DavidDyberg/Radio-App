@@ -11,6 +11,7 @@ import { useSize, SizeOption } from "@/utils/SizeProvider";
 import { cn } from "@/utils/classnames";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Check } from "lucide-react-native";
 
 type P4ModalProps = ModalProps & {
   visible: boolean;
@@ -49,6 +50,13 @@ const P4Modal = ({
     onSelectP4(channel);
     await AsyncStorage.setItem("activeP4Channel", JSON.stringify(channel));
   };
+
+  const checkBoxSize =
+    appSize === SizeOption.Large
+      ? 32
+      : appSize === SizeOption.ExtraLarge
+      ? 38
+      : 24;
 
   return (
     <Modal
@@ -93,20 +101,27 @@ const P4Modal = ({
                 onPress={() => handleSelectP4(channel)}
                 className="p-2 border-b border-gray-300"
               >
-                <Text
-                  className={cn(
-                    appSize === SizeOption.Large
-                      ? "text-2xl"
-                      : appSize === SizeOption.ExtraLarge
-                      ? "text-3xl"
-                      : "text-base"
+                <View className="flex flex-row justify-between">
+                  <Text
+                    className={cn(
+                      appSize === SizeOption.Large
+                        ? "text-2xl"
+                        : appSize === SizeOption.ExtraLarge
+                        ? "text-3xl"
+                        : "text-base",
+                      selectedChannelId === channel.id ? "text-green-500" : ""
+                    )}
+                  >
+                    {channel.name}
+                  </Text>
+                  {selectedChannelId === channel.id && (
+                    <Check
+                      width={checkBoxSize}
+                      height={checkBoxSize}
+                      color="#22c55e"
+                    />
                   )}
-                >
-                  {channel.name}
-                </Text>
-                {selectedChannelId === channel.id && (
-                  <Text className="text-green-500">Selected</Text>
-                )}
+                </View>
               </Pressable>
             </View>
           ))}
