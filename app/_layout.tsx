@@ -1,8 +1,8 @@
 import React from "react";
-import "../global.css";
+import "@/global.css";
 import ReactQueryProvider from "@/utils/ReactQueryProvider";
 import { SizeProvider } from "@/utils/SizeProvider";
-import AppLayout from "./AppLayout";
+import AppLayout from "@/app/AppLayout";
 
 export default function RootLayout() {
   return (
