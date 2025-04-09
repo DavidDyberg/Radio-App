@@ -28,7 +28,6 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="myapp"/>
         <data android:scheme="com.daviddyberg.radioapp"/>
-        <data android:scheme="exp+radio-app"/>
       </intent-filter>
     </activity>
   </application>
