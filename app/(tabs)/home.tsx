@@ -38,9 +38,6 @@ export default function HomeScreen() {
   return (
     <ScrollView>
       <View className="flex-1 ml-4">
-        <Link href="/settings">
-          <Text className="text-blue-800">Settings</Text>
-        </Link>
         <ChannelList channels={filteredChannels} />
       </View>
     </ScrollView>
