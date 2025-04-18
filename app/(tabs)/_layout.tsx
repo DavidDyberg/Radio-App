@@ -22,6 +22,7 @@ export default function TabsLayout() {
         name="home"
         options={{
           headerTitle: "Radio Kanaler",
+          title: "Kanaler",
           tabBarIcon: ({ color, size }) => <House color={color} size={size} />,
         }}
       />
@@ -29,6 +30,7 @@ export default function TabsLayout() {
         name="settings"
         options={{
           headerTitle: "Inställningar",
+          title: "Inställningar",
           tabBarIcon: ({ color, size }) => (
             <Settings color={color} size={size} />
           ),
