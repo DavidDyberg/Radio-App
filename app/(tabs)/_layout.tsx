@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { SizeOption, useSize } from "@/utils/SizeProvider";
-import { House, Settings } from "lucide-react-native";
+import { TvMinimalPlay, Settings } from "lucide-react-native";
 
 export default function TabsLayout() {
   const { appSize } = useSize();
@@ -10,12 +10,27 @@ export default function TabsLayout() {
       : appSize === SizeOption.ExtraLarge
       ? 26
       : 18;
+
+  const tabBarFontSize =
+    appSize === SizeOption.Large
+      ? 16
+      : appSize === SizeOption.ExtraLarge
+      ? 20
+      : 12;
+
+  const tabBarIconSize =
+    appSize === SizeOption.Large
+      ? 28
+      : appSize === SizeOption.ExtraLarge
+      ? 36
+      : 26;
+
   return (
     <Tabs
       screenOptions={{
-        tabBarStyle: { backgroundColor: "#f8fafc" },
         headerStyle: { backgroundColor: "#f8fafc" },
         headerTitleStyle: { fontSize: titleFontSize },
+        tabBarLabelStyle: { fontSize: tabBarFontSize },
       }}
     >
       <Tabs.Screen
@@ -23,7 +38,9 @@ export default function TabsLayout() {
         options={{
           headerTitle: "Radio Kanaler",
           title: "Kanaler",
-          tabBarIcon: ({ color, size }) => <House color={color} size={size} />,
+          tabBarIcon: ({ color }) => (
+            <TvMinimalPlay color={color} size={tabBarIconSize} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -31,8 +48,9 @@ export default function TabsLayout() {
         options={{
           headerTitle: "Inställningar",
           title: "Inställningar",
-          tabBarIcon: ({ color, size }) => (
-            <Settings color={color} size={size} />
+
+          tabBarIcon: ({ color }) => (
+            <Settings color={color} size={tabBarIconSize} />
           ),
         }}
       />
