@@ -5,7 +5,8 @@ import { Platform } from "react-native";
 
 export default function TabsLayout() {
   const { appSize } = useSize();
-  const titleFontSize =
+
+  const headerTitleFontSize =
     appSize === SizeOption.Large
       ? 22
       : appSize === SizeOption.ExtraLarge
@@ -31,16 +32,14 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: "#f8fafc" },
-        headerTitleStyle: { fontSize: titleFontSize },
         tabBarStyle: { height: tabBarHeight },
         tabBarLabelStyle: { fontSize: tabBarFontSize },
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
-          headerTitle: "Radio Kanaler",
+          headerShown: false,
           title: "Kanaler",
           tabBarIcon: ({ color }) => (
             <TvMinimalPlay color={color} size={tabBarIconSize} />
@@ -51,6 +50,9 @@ export default function TabsLayout() {
         name="settings"
         options={{
           headerTitle: "Inställningar",
+          headerTitleStyle: {
+            fontSize: headerTitleFontSize,
+          },
           title: "Inställningar",
 
           tabBarIcon: ({ color }) => (

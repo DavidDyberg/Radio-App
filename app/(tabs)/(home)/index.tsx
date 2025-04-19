@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchChannels } from "@/api-routes/channels";
 import type { ChannelType } from "@/lib/types";
 import ChannelList from "@/components/channelList";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   const {
@@ -37,6 +38,7 @@ export default function HomeScreen() {
   return (
     <ScrollView>
       <View className="flex-1 ml-4">
+        <Link href="/channel/1">Go to channel 1</Link>
         <ChannelList channels={filteredChannels} />
       </View>
     </ScrollView>
