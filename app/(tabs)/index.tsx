@@ -1,5 +1,4 @@
 import { View, Text, ActivityIndicator } from "react-native";
-import { Link } from "expo-router";
 import { ScrollView } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { fetchChannels } from "@/api-routes/channels";

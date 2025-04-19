@@ -19,7 +19,7 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           headerTitle: "Radio Kanaler",
           title: "Kanaler",
