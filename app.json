@@ -12,7 +12,9 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.daviddyberg.radioapp",
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
@@ -41,6 +43,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ee2f71c2-e939-4112-97be-c8809cc494f1"
+      }
     }
   }
 }
