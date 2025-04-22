@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "radio-app",
-    "slug": "radio-app",
+    "name": "RadioInga",
+    "slug": "radio-inga",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -12,9 +12,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.daviddyberg.radioapp",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
