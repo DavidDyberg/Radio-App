@@ -13,11 +13,16 @@
       "bundleIdentifier": "com.daviddyberg.radioapp",
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
+      },
+      "icon": {
+        "light": "./assets/icons/ios-light.png",
+        "dark": "./assets/icons/ios-dark.png",
+        "tinted": "./assets/icons/ios-tinted.png"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/icons/android-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.daviddyberg.radioapp"
