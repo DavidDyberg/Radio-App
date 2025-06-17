@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "RadioInga",
-    "slug": "radio-inga",
+    "slug": "radioinga",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -12,17 +12,21 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.daviddyberg.radioapp",
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       },
       "icon": {
-        "light": "./assets/icons/ios-light.png",
         "dark": "./assets/icons/ios-dark.png",
+        "light": "./assets/icons/ios-light.png",
         "tinted": "./assets/icons/ios-tinted.png"
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/android-icon.png",
+        "monochromeImage": "./assets/icons/android-icon.png",
+        "backgroundImage": "./assets/icons/android-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.daviddyberg.radioapp"
@@ -42,7 +46,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
@@ -52,8 +58,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "ee2f71c2-e939-4112-97be-c8809cc494f1"
+        "projectId": "9c3f8599-fe37-41cf-9160-57f96fab5d8f"
       }
-    }
+    },
+    "owner": "daviddyberg"
   }
 }
