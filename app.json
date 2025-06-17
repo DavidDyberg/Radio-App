@@ -17,14 +17,16 @@
         ]
       },
       "icon": {
-        "light": "./assets/icons/ios-light.png",
         "dark": "./assets/icons/ios-dark.png",
+        "light": "./assets/icons/ios-light.png",
         "tinted": "./assets/icons/ios-tinted.png"
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/android-icon.png",
+        "monochromeImage": "./assets/icons/android-icon.png",
+        "backgroundImage": "./assets/icons/android-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.daviddyberg.radioapp"
@@ -44,7 +46,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
