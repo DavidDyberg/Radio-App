@@ -17,7 +17,7 @@ export default function HomeLayout() {
         options={{
           headerTitle: "Radio Kanaler",
           headerTitleAlign: "center",
-          headerStyle: { backgroundColor: "#f8fafc" },
+          headerStyle: { backgroundColor: "#2b76c0" },
           headerTitleStyle: { fontSize: titleFontSize },
         }}
       />
