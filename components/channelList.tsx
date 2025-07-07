@@ -68,19 +68,21 @@ const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
     await AsyncStorage.setItem("selectedP4Channel", JSON.stringify(channel));
   };
 
-  // const testSound = "https://www.sverigesradio.se/topsy/direkt/srapi/132.mp3";
-  // const player = useAudioPlayer(testSound);
+  const testSound = "https://www.sverigesradio.se/topsy/direkt/srapi/132.mp3";
+  const player = useAudioPlayer(testSound);
 
-  // const handleTestPlay = () => {
-  //   player.play();
-  // };
+  const handleTestPlay = () => {
+    player.play();
+  };
 
-  // const handleTestStop = () => {
-  //   player.pause();
-  // };
+  const handleTestStop = () => {
+    player.pause();
+  };
 
   return (
     <View className="gap-4">
+      <Button title="Play" onPress={handleTestPlay} />
+      <Button title="Pause" onPress={handleTestStop} />
       {filteredChannels.map((channel, index) => (
         <React.Fragment key={channel.id}>
           <View className="flex flex-col gap-1 border-b border-gray-400">
