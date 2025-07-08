@@ -12,9 +12,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.daviddyberg.radioapp",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       },
       "icon": {
         "dark": "./assets/icons/ios-dark.png",
@@ -41,10 +39,14 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/icons/ios-dark.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/icons/ios-light.png",
+            "backgroundColor": "#000000"
+          }
         }
       ],
       "expo-font",
